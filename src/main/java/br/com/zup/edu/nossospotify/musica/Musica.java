@@ -53,4 +53,13 @@ public class Musica {
     public void adicionar(Album album) {
         this.album = album;
     }
+
+	public String getNome() {
+		return nome;
+	}
+
+	public Artista getDono() {
+		return dono;
+	}
+
 }
