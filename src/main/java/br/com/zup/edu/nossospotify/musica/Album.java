@@ -35,4 +35,9 @@ public class Album {
     public Long getId() {
         return id;
     }
+
+	public String getNome() {
+		return nome;
+	}
+      
 }
