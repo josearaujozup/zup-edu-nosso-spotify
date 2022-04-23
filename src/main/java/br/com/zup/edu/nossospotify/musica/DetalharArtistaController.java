@@ -22,6 +22,7 @@ public class DetalharArtistaController {
 	public ResponseEntity<ArtistaRespostaDTO> detalhar(@PathVariable("id") Long idArtista){
 		
 		Artista artista = repository.consultarArtistaComMusicasEJogos(idArtista).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Artista não encontrada"));
+//		Artista artista = repository.findById(idArtista).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Artista não encontrada"));
 		
 		return ResponseEntity.ok(new ArtistaRespostaDTO(artista));
 	}

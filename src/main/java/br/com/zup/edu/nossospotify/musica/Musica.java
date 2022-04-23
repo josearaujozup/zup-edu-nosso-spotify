@@ -26,7 +26,11 @@ public class Musica {
 
     @ManyToOne
     private Album album;
-
+    
+    public Musica(String nome) {
+        this.nome = nome;
+    }
+    
     public Musica(String nome, Artista dono) {
         this.nome = nome;
         this.dono = dono;
@@ -60,6 +64,14 @@ public class Musica {
 
 	public Artista getDono() {
 		return dono;
+	}
+
+	public void setDono(Artista dono) {
+		this.dono = dono;
+	}
+
+	public void setAlbum(Album album) {
+		this.album = album;
 	}
 
 }

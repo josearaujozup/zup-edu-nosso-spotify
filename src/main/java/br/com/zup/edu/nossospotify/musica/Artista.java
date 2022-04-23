@@ -51,7 +51,9 @@ public class Artista {
     }
 
     public void adicionar(Musica musica) {
+    	musica.setDono(this);
         this.musicas.add(musica);
+        System.out.println("Chegou dentro de artista: "+ musicas.size());
     }
 
     public void adicionar(Album album){

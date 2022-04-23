@@ -39,5 +39,12 @@ public class Album {
 	public String getNome() {
 		return nome;
 	}
-      
+    
+	public void adiciona(Musica musica) {
+        musica.setAlbum(this);
+        this.musicas.add(musica);
+        System.out.println("Chegou dentro de album: "+ musicas.size());
+    }
+	
+	
 }
