@@ -74,4 +74,15 @@ public class Musica {
 		this.album = album;
 	}
 
+	public void remove(Artista artista) {
+		
+		if (!this.participantes.remove(artista)) {
+			throw new ArtistaParticipanteNaoEncontradoException(
+	                "Não existe um participante com o id fornecido."
+	            );
+		}
+		
+		artista.getParticipacoes().remove(this);
+	}
+
 }

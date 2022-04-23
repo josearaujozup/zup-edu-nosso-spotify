@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-public class CadastrarMusicaController {
+public class MusicaController {
 	
 	
 	private final AlbumRepository repository;
@@ -25,7 +26,7 @@ public class CadastrarMusicaController {
 	private final MusicaRepository musicaRepository;
 	
 	
-	public CadastrarMusicaController(AlbumRepository repository, ArtistaRepository artistaRepository, MusicaRepository musicaRepository) {
+	public MusicaController(AlbumRepository repository, ArtistaRepository artistaRepository, MusicaRepository musicaRepository) {
 		this.repository = repository;
 		this.artistaRepository = artistaRepository;
 		this.musicaRepository = musicaRepository;
@@ -50,6 +51,20 @@ public class CadastrarMusicaController {
 		URI location = uriComponentsBuilder.path("/albuns/{albumId}/musicas/{telefoneId}").buildAndExpand(album.getId(), musica.getId()).toUri();
 		
 		return ResponseEntity.created(location).build();
+	}
+	
+	
+	@Transactional
+	@DeleteMapping("/musicas/{musicaId}/artistas/{artistaId}")
+	public ResponseEntity<?> removeParticipanteMusica(@PathVariable("musicaId") Long musicaId, @PathVariable("artistaId") Long artistaId){
+		
+		Musica musica = musicaRepository.findById(musicaId).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Musica não encontrada"));
+		
+		Artista artista = artistaRepository.findById(artistaId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Artista com esse id não cadastrado"));
+		
+		musica.remove(artista);
+		
+		return ResponseEntity.noContent().build();
 	}
 	
 }

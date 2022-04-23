@@ -74,5 +74,10 @@ public class Artista {
 
 	public Set<Musica> getMusicas() {
 		return musicas;
+	}
+
+	public Set<Musica> getParticipacoes() {
+		return participacoes;
 	}	
+	
 }
