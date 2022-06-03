@@ -20,7 +20,7 @@ public class DetalharMusicaController {
     @GetMapping("/musicas/{id}")
     public ResponseEntity<?> detalhar(@PathVariable Long id){
 
-        Musica musica = repository.findByIdAndParticpantes(id)
+        Musica musica = repository.findByIdAndParticipantes(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Musica nao cadastrada."));
 
         return ok(new DetalharMusicaResponse(musica));
