@@ -44,9 +44,9 @@ public class MusicaController {
 		album.adiciona(musica);
 		
 //		repository.save(album);
-		musicaRepository.save(musica);
+//		musicaRepository.save(musica);
 //		musicaRepository.flush();
-//		repository.flush(); //força geração do ID do telefone no banco de dados
+		repository.flush(); //força geração do ID do telefone no banco de dados
 		
 		URI location = uriComponentsBuilder.path("/albuns/{albumId}/musicas/{telefoneId}").buildAndExpand(album.getId(), musica.getId()).toUri();
 		

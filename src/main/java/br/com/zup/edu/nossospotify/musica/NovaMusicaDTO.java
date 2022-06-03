@@ -34,7 +34,8 @@ public class NovaMusicaDTO {
 	}
 
 	public Musica toModel(ArtistaRepository artistaRepository) {
-		Artista artista = artistaRepository.findById(donoId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Não existe um artista com o id informado."));
+		Artista artista = artistaRepository.findById(donoId).orElseThrow(
+				() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Não existe um artista com o id informado."));
 		
 		System.out.println("Nome artista: "+ artista.getNome());
 		
